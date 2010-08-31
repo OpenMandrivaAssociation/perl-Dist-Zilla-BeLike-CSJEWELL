@@ -5,7 +5,7 @@ Name:       perl-%{upstream_name}
 Version:    %perl_convert_version %{upstream_version}
 Release:    %mkrel 1
 
-Summary:    Upload tarball to my own site
+Summary:    Build a modern dist like CSJEWELL does it
 License:    GPL+ or Artistic
 Group:      Development/Perl
 Url:        http://search.cpan.org/dist/%{upstream_name}
@@ -54,14 +54,15 @@ BuildArch: noarch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 
 %description
-
+This sets up defaults for dzil new to create a dist like CSJEWELL does
+it, including a dist.ini that does the release steps that CSJEWELL
+requires.
 
 %prep
 %setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
-
 %make
 
 %check
@@ -79,5 +80,3 @@ rm -rf %buildroot
 %doc Changes LICENSE META.yml README
 %{_mandir}/man3/*
 %perl_vendorlib/*
-
-
